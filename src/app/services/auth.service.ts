@@ -25,8 +25,8 @@ export class AuthService {
 
 
   public isAuthenticated(): boolean {
-    const accessToken = localStorage.getItem('access_token');
-    const refreshToken = localStorage.getItem('refresh_token');
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
     // Check whether the token is expired and return
     // true or false
     return accessToken != null && accessToken !== '';
@@ -73,4 +73,9 @@ export class AuthService {
     return this.http.get<{ status: boolean, message: string, data: any }>(`${API_URL}auth/current`);
   }
 
+  logout() {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    this.router.navigate(['auth', 'login']);
+  }
 }

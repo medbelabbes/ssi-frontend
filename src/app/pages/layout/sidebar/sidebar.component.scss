@@ -1,0 +1,193 @@
+.sidenav {
+  height: 100vh;
+  overflow: scroll;
+  scrollbar-width: 1px;
+  float: left;
+  position: fixed;
+  top: 75px;
+  left: 0;
+  background-color: white;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 30px;
+  padding-bottom: 85px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 20px whitesmoke, 0 3px 8px rgba(0, 0, 0, 0.23);
+  width: 260px;
+  z-index: 2;
+}
+
+.list-item span {
+  margin-left: 40%;
+}
+
+.sidenav::-webkit-scrollbar {
+  width: 0px;
+}
+
+
+
+
+
+
+.router-link {
+  outline: 0;
+}
+
+.elements {
+  display: flex;
+  flex-direction: row;
+  height: 30px;
+  width: 100%;
+  align-items: center;
+  padding: 25px;
+  background: white !important;
+  color: black;
+  padding-right: 3px;
+}
+
+.elements:hover {
+  cursor: pointer;
+  color: #EC2027;
+}
+
+.elements:hover i {
+  color: #EC2027;
+}
+
+.elements p {
+  margin: 0;
+  width: 70%;
+  font-size: 13px;
+  color: black;
+}
+
+
+
+.elements p:hover {
+  color: #EC2027;
+}
+
+.elements i {
+  width: 19px;
+  height: 19px;
+  font-size: 19px;
+  transition-duration: 0.4s;
+  margin-right: 18px;
+}
+
+.sub_elements_list p:hover {
+  color: #EC2027;
+  cursor: pointer;
+}
+
+i.fa-map-marker {
+  color: black;
+}
+
+i.fa-map-marker:hover {
+  color: #EC2027;
+  cursor: pointer;
+}
+
+.sub_elements_list p {
+  margin: 17px;
+  margin-left: 60px;
+  font-size: 13px;
+}
+
+.mini-items p {
+  margin: 5px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.mini-items span {
+  margin-left: 5px;
+}
+
+.details-icon {
+  margin-left: 75px;
+  font-size: 12px;
+}
+
+
+.sub_elements_separator {
+  margin: 0 auto;
+  width: 80%;
+  height: 1px;
+  opacity: 0.7;
+  background: rgb(230, 229, 229);
+}
+
+.active-page {
+  color: #EC2027 !important;
+  background-color: #EC2027;
+}
+
+.indicator {
+  height: 60px;
+  width: 5px;
+  position: absolute;
+  left: 0;
+  transition-duration: 0.4s;
+}
+
+
+.separator {
+  width: 100%;
+  height: 1.2px;
+  background: rgb(230, 229, 229);
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.arrow {
+  font-size: 11px;
+  height: 11px;
+  width: 20px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+
+.tool-bar .fa-bars {
+  cursor: pointer;
+}
+
+
+.router-outlet {
+  margin-left: 260px;
+  transition: 0.4s;
+  margin-top: 75px;
+}
+
+
+
+.closebtn:hover {
+  color: rgb(255, 0, 0);
+}
+
+::ng-deep .simple-notification.has-icon .sn-title, ::ng-deep .simple-notification.has-icon .sn-content, ::ng-deep .simple-notification.has-icon .sn-html {
+  padding: 0 !important;
+}
+
+::ng-deep .simple-notification {
+  padding: 0 !important;
+  cursor: 0 !important;
+  width: 500px;
+}
+
+::ng-deep .simple-notification-wrapper {
+  width: 500px !important;
+}
+
+::ng-deep .alert {
+  padding: 12px
+}
+
+::ng-deep .closebtn {
+  margin-left: auto !important;
+}
+

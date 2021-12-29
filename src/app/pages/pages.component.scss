@@ -1,0 +1,46 @@
+i.fa-map-marker {
+  color: black;
+}
+
+i.fa-map-marker:hover {
+  color: #EC2027;
+  cursor: pointer;
+}
+
+
+
+.router-outlet {
+  margin-left: 260px;
+  transition: 0.4s;
+  margin-top: 75px;
+}
+
+
+
+.closebtn:hover {
+  color: rgb(255, 0, 0);
+}
+
+::ng-deep .simple-notification.has-icon .sn-title, ::ng-deep .simple-notification.has-icon .sn-content, ::ng-deep .simple-notification.has-icon .sn-html {
+  padding: 0 !important;
+}
+
+::ng-deep .simple-notification {
+  padding: 0 !important;
+  cursor: 0 !important;
+  width: 500px;
+  cursor: '';
+}
+
+::ng-deep .simple-notification-wrapper {
+  width: 500px !important;
+}
+
+::ng-deep .alert {
+  padding: 12px
+}
+
+::ng-deep .closebtn {
+  margin-left: auto !important;
+}
+

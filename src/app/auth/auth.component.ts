@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import {Router, RouterOutlet} from "@angular/router";
 import {AuthService} from "../services/auth.service";
@@ -17,28 +17,20 @@ export class AuthComponent implements OnInit {
     private titleService: Title,
     private router: Router,
     private authService: AuthService,
+    private cdr: ChangeDetectorRef
   ) {
 
   }
 
 
   ngOnInit() {
-    this.titleService.setTitle('TopFood - Dashboard');
+    this.titleService.setTitle('SSI');
     this.isLoading = true;
-    this.authService.getCurrentUser().subscribe({
-      next: (res) => {
-        if (res.status) {
-          this.router.navigate(['/dashboard']);
-        } else {
-          this.isLoading = false;
-          this.router.navigate(['/auth/login']);
-        }
-      },
-      error: (err) => {
-        this.isLoading = false;
-        this.router.navigate(['/auth/login']);
-      }
-    });
+    setTimeout(() => {
+      this.isLoading = false;
+      this.cdr.detectChanges();
+    }, 1500);
+
   }
 
 

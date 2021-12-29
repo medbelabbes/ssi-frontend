@@ -5,6 +5,7 @@ import {Title} from "@angular/platform-browser";
 import {AuthService} from "../../services/auth.service";
 import {MatDialog} from "@angular/material/dialog";
 import {Router} from "@angular/router";
+import {USER} from "../../app.component";
 
 @Component({
   selector: 'app-login',
@@ -47,11 +48,13 @@ export class LoginComponent implements OnInit {
           this.isLoading = true;
           if (res.status) {
             this.storeToken(res.data.accessToken, res.data.refreshToken);
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['dashboard']).then(res => {
+              console.log('to dashboard')
+            });
           } else {
             this.isLoading = false;
             this.errorAuth = true;
-            this.message = "Failed to login"
+            this.message = res.message;
           }
         },
         error: (err) => {

@@ -1,0 +1,31 @@
+<div class="sidenav" *ngIf="isLoading">
+  <ngx-shimmer-loading
+    style="margin-right: 0"
+    [shape]="'rect'"
+    [width]="'260px'"
+    [height]="'100vh'">
+  </ngx-shimmer-loading>
+</div>
+
+<div id="mySidenav" class="sidenav" *ngIf="!isLoading">
+
+
+  <div *ngFor="let item of menu">
+    <div class="router-link" routerLink="{{item.link}}" (click)="onClick(item.id); getCurrentUrl()">
+      <div class="elements" [class.active-page]='currentPage == item.id'>
+        <div class="indicator" [class.active-page]='currentPage == item.id'></div>
+        <i><span class="material-icons">{{item.icon}}</span></i>
+        <p>{{item.title}}</p>
+      </div>
+    </div>
+    <div class="separator"></div>
+  </div>
+
+
+
+
+
+
+
+
+</div>

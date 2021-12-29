@@ -1,0 +1,62 @@
+<div class="tool-bar row">
+  <div class="col col-sm-4 left-content">
+    <i class="fa fa-bars" (click)="onHideSidebar()"></i>
+    <div class="separator-vertical"></div>
+    <div class="left-content"  routerLink="/dashboard" style="cursor: pointer" matTooltip="Go to Dashboard">
+      <div style="display: flex; flex-direction: column">
+        <p>SSI<span style="color: black">TEST</span></p>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="col-sm-8 col right-content">
+    <div class="profile" (click)="OpenProfilePanel()" *ngIf="adminFetched">
+      <div class="admin-picture"></div>
+      <p class="owner-name">Profile</p>
+      <div class="profile-panel" [@enterAnimation] *ngIf="ProfilePanel">
+                    <span>
+                      {{currentUser ? (currentUser.name) : ''}}
+                    </span>
+        <mat-divider></mat-divider>
+        <div class="inline" (click)="goToProfile()">
+          <i class="fas fa-user-circle"></i>
+          <span>Profil</span>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="inline" (click)="onOpenSettings()">
+          <i class="fas fa-cogs"></i>
+          <span> Settings </span>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="inline" (click)="onLogout()">
+          <i class="fas fa-sign-out-alt"></i>
+          <span> Logout </span>
+        </div>
+      </div>
+    </div>
+    <div class="separator-vertical"></div>
+    <div class="messages">
+        <span matBadge="{{countMessages}}"
+              matBadgeOverlap="true"
+              matBadgeColor="warn">
+          <i class="far fa-envelope">
+          </i>
+        </span>
+    </div>
+
+
+    <div class="separator-vertical"></div>
+    <div class="notifications">
+        <span matBadge="{{countNotifications}}"
+              matBadgeOverlap="true"
+              matBadgeColor="warn">
+          <i class="far fa-bell"
+            >
+          </i>
+        </span>
+    </div>
+    <div class="separator-vertical"></div>
+    <i class="fas fa-search" [routerLink]="['/dashboard/search']"></i>
+  </div>
+</div>
