@@ -18,6 +18,10 @@ export class SidebarComponent implements OnInit {
     // @ts-ignore
   typeUser: string;
 
+  @Input()
+    // @ts-ignore
+  adminFetched: boolean;
+
   menu: MenuItem[] = [];
   isLoading = false;
 
@@ -97,7 +101,7 @@ export class SidebarComponent implements OnInit {
         break;
       }
 
-      case '/users/users' : {
+      case '/users/listing' : {
         this.currentPage = 2;
         break;
       }

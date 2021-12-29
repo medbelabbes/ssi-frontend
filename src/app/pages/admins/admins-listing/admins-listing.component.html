@@ -1,1 +1,107 @@
-<p>admins-listing works!</p>
+<div class="admins-list">
+  <div class="row">
+    <div class="col col-xl-12 col-lg-12">
+      <mat-card class="top stat">
+        <mat-card-header>
+          <mat-card-title>
+            Listing
+          </mat-card-title>
+
+          <div style="width: 100%;  display: flex; flex-direction: row; justify-content: flex-end">
+
+            <mat-form-field appearance="outline" style=" width: 30%; margin-right: 10px">
+              <mat-label>
+                Search
+              </mat-label>
+              <input matInput placeholder="Search" type="text"
+                     (input)="onSearchAdmins($event)">
+              <mat-error></mat-error>
+            </mat-form-field>
+            <button mat-stroked-button style="height: 52px;"
+                    (click)="goToAddAdmin()">
+              <i class="fas fa-user-plus"></i>
+              <span>Add new admin</span>
+            </button>
+
+          </div>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-progress-bar mode="indeterminate"
+                          *ngIf="isLoading$ | async"></mat-progress-bar>
+
+        <mat-card-content  *ngIf="!(isLoading$ | async)">
+
+          <div class="tables table-header">
+            <div style="width: 20%;text-align: center;">
+              Name
+            </div>
+            <div style="width: 20%;text-align: center;">
+              Username
+            </div>
+            <div style="width: 20%;text-align: center;">
+              Email
+            </div>
+            <div style="width: 15%;text-align: center;">
+             Status
+            </div>
+            <div style="width: 20%;text-align: center;">
+              Role
+            </div>
+            <div style="width: 5%;text-align: center;">
+              Actions
+            </div>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="tables table-content" *ngFor="let admin of admins">
+            <div style="width: 20%;text-align: center;">
+              {{admin.name}}
+            </div>
+            <div style="width: 20%;text-align: center;">
+              {{admin.username}}
+            </div>
+            <div style="width: 20%;text-align: center;">
+              {{admin.email}}
+            </div>
+            <div style="width: 15%;text-align: center;">
+              {{admin.status}}
+            </div>
+            <div style="width: 20%;text-align: center;">
+              <span *ngFor="let role of admin.roles;">
+                  {{role.name + ' | '}}
+              </span>
+            </div>
+            <div class="actions-div">
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="onOpenAdminDetails(admin)">
+                  <span><i class="fas fa-file-alt"></i> Detail</span>
+                </button>
+
+
+                <button mat-menu-item (click)="onEdit(admin)">
+                  <span><i class="fas fa-edit"></i> Edit</span>
+                </button>
+                <button mat-menu-item (click)="onDelete(admin)">
+                  <span><i class="fas fa-trash-alt"></i> Delete</span>
+                </button>
+              </mat-menu>
+
+            </div>
+
+          </div>
+
+        </mat-card-content>
+        <mat-paginator
+          [length]="totalAdmins"
+          [pageSize]="adminsPerPage"
+          [pageSizeOptions]="adminsPageSizeOptions"
+          (page)="onChangePage($event)"
+          *ngIf="totalAdmins > 0"
+        ></mat-paginator>
+        <p style="margin-left: 5%;margin-top:2%"  *ngIf="!(isLoading$ | async) && totalAdmins === 0">{{message}}</p>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -1,14 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-:root
-{
+:root {
   --primary-color: #EC2027;
   --success-color: #27ae9e;
   --image-border-color: #ffb82c;
 }
 
-html
-{
+html {
   height: 100%;
 }
 
@@ -18,16 +17,17 @@ body {
   font-family: 'Fira Sans' !important;
   background: #F3F3F3;
 }
+
 /* mat-card{
     font-family: 'Fira Sans' !important;
 } */
 mat-card-title {
   font-family: 'Fira Sans' !important;
 }
+
 /* mat-card-content {
     font-family: 'Fira Sans' !important;
 } */
-
 
 
 .row {
@@ -50,9 +50,11 @@ mat-card-title {
 mat-card {
   font-family: 'Fira Sans';
 }
+
 mat-card-title {
   font-family: 'Fira Sans';
 }
+
 mat-card-content {
   font-family: 'Fira Sans';
 }
@@ -67,19 +69,19 @@ mat-card-content {
 /* Track */
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
-  background:transparent;
+  background: transparent;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: var(--primary-color);
-  border-radius : 5px;
+  border-radius: 5px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background : #888888;
-  border-radius : 5px;
+  background: #888888;
+  border-radius: 5px;
 
 
 }
@@ -101,7 +103,7 @@ mat-progress-bar {
 }
 
 ::ng-deep .mat-progress-bar-fill::after {
-  background-color:  var(--primary-color);
+  background-color: var(--primary-color);
 }
 
 ::ng-deep .mat-progress-bar-buffer {
@@ -173,7 +175,6 @@ mat-progress-bar {
 }
 
 
-
 .snackbar-style {
   background: #27ae60;
   color: white;
@@ -198,7 +199,6 @@ mat-progress-bar {
 }
 
 
-
 .mat-step-header .mat-step-icon-selected {
   background-color: var(--primary-color);
 }
@@ -206,7 +206,8 @@ mat-progress-bar {
 .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
   background-color: transparent !important;
   color: var(--primary-color);
-  +.mat-step-label{
+
+  + .mat-step-label {
     color: var(--primary-color) !important;
   }
 }

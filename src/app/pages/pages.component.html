@@ -3,14 +3,14 @@
               [countNotifications]="countNotifications"
               [currentUser]="currentUser"></app-header>
 
-  <app-sidebar *ngIf="adminFetched"
+  <app-sidebar [adminFetched]="adminFetched"
                [currentUser]="currentUser"
                [typeUser]="typeUser"
 
   ></app-sidebar>
 
   <div id="router" class="router-outlet">
-   <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
   </div>
 
 </div>

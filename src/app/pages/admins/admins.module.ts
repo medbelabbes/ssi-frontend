@@ -5,6 +5,7 @@ import { AdminsRoutingModule } from './admins-routing.module';
 import { AdminsComponent } from './admins.component';
 import { AdminAddEditComponent } from './admin-add-edit/admin-add-edit.component';
 import { AdminsListingComponent } from './admins-listing/admins-listing.component';
+import {AngularMaterialModule} from "../../angular-material.module";
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { AdminsListingComponent } from './admins-listing/admins-listing.componen
   ],
   imports: [
     CommonModule,
-    AdminsRoutingModule
+    AdminsRoutingModule,
+    AngularMaterialModule
   ]
 })
 export class AdminsModule { }

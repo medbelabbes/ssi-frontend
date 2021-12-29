@@ -3,6 +3,7 @@ import {environment} from "../../environments/environment";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {BehaviorSubject, Observable, Subject} from "rxjs";
+import {User} from "../models/User.model";
 
 const API_URL = `${environment.apiURL}`;
 
@@ -14,6 +15,7 @@ export class AuthService {
   isLoadingSubject: BehaviorSubject<boolean>;
 
   public loginSubListener = new Subject<{status: boolean, message: string, data: any }>();
+  public registerSubListener = new Subject<{status: boolean, message: string, data: any }>();
 
   constructor(
     private http: HttpClient,
@@ -67,6 +69,41 @@ export class AuthService {
   getUserLoggedListener() {
     return this.loginSubListener.asObservable();
   }
+
+  register(user: User) {
+
+    this.isLoadingSubject.next(true);
+
+
+    this.http.post<{ status: boolean, message: string, data: any }>(`${API_URL}auth/register`, user, {})
+      .subscribe({
+          next: (response: { status: boolean, message: string, data: any }) => {
+            this.registerSubListener.next({
+              status: response.status,
+              message: response.message,
+              data: response.data,
+            });
+            this.isLoadingSubject.next(false);
+
+          },
+          error: (err: any) => {
+            this.registerSubListener.next({
+              status: false,
+              message: err.error.message,
+              data: {},
+            });
+            this.isLoadingSubject.next(false);
+
+          }
+        }
+      )
+  }
+
+  getUserRegisteredListener() {
+    return this.registerSubListener.asObservable();
+  }
+
+
 
 
   public getCurrentUser() {
