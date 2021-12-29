@@ -1,1 +1,105 @@
-<p>users-listing works!</p>
+<div class="users-list">
+  <div class="row">
+    <div class="col col-xl-12 col-lg-12">
+      <mat-card class="top stat">
+        <mat-card-header>
+          <mat-card-title>
+            Listing
+          </mat-card-title>
+
+          <div style="width: 100%;  display: flex; flex-direction: row; justify-content: flex-end">
+
+            <mat-form-field appearance="outline" style=" width: 30%; margin-right: 10px">
+              <mat-label>
+                Search
+              </mat-label>
+              <input matInput placeholder="Search" type="text"
+                     (input)="onSearchUsers($event)">
+              <mat-error></mat-error>
+            </mat-form-field>
+            <button mat-stroked-button style="height: 52px;"
+                    (click)="goToAddUser()">
+              <i class="fas fa-user-plus"></i>
+              <span>Add new user</span>
+            </button>
+
+          </div>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-progress-bar mode="indeterminate"
+                          *ngIf="isLoading$ | async"></mat-progress-bar>
+
+        <mat-card-content  *ngIf="!(isLoading$ | async)">
+
+          <div class="tables table-header">
+            <div style="width: 25%;text-align: center;">
+              Name
+            </div>
+            <div style="width: 25%;text-align: center;">
+              Username
+            </div>
+            <div style="width: 25%;text-align: center;">
+              Email
+            </div>
+            <div style="width: 20%;text-align: center;">
+              Status
+            </div>
+
+            <div style="width: 5%;text-align: center;">
+              Actions
+            </div>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="tables table-content" *ngFor="let user of users">
+            <div style="width: 25%;text-align: center;">
+              {{user.name}}
+            </div>
+            <div style="width: 25%;text-align: center;">
+              {{user.username}}
+            </div>
+            <div style="width: 25%;text-align: center;">
+              {{user.email}}
+            </div>
+
+            <div class="status-column" style="width: 20%;text-align: center;" (click)="onChangeStatus(user)">
+              <span style="border: 1px solid #888888;color : #888888"
+                    *ngIf="user.status == 'PENDING'">PENDING</span>
+              <span style="border: 1px solid  #32a400;color : #32a400"
+                    *ngIf="user.status == 'VALIDATED'">VALIDATED</span>
+              <span style="border: 1px solid  red;color : red" *ngIf="user.status == 'BANNED'">BANNED</span>
+            </div>
+            <div class="actions-div">
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="onOpenUserDetails(user)">
+                  <span><i class="fas fa-file-alt"></i> Detail</span>
+                </button>
+
+
+                <button mat-menu-item (click)="onEdit(user)">
+                  <span><i class="fas fa-edit"></i> Edit</span>
+                </button>
+                <button mat-menu-item (click)="onDelete(user)">
+                  <span><i class="fas fa-trash-alt"></i> Delete</span>
+                </button>
+              </mat-menu>
+
+            </div>
+
+          </div>
+
+        </mat-card-content>
+        <mat-paginator
+          [length]="totalUsers"
+          [pageSize]="usersPerPage"
+          [pageSizeOptions]="usersPageSizeOptions"
+          (page)="onChangePage($event)"
+          *ngIf="totalUsers > 0"
+        ></mat-paginator>
+        <p style="margin-left: 5%;margin-top:2%"  *ngIf="!(isLoading$ | async) && totalUsers === 0">{{message}}</p>
+      </mat-card>
+    </div>
+  </div>
+</div>

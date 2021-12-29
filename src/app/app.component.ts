@@ -26,7 +26,6 @@ export class AppComponent implements OnInit{
       next: (res) => {
         if (res.status) {
           USER = res.data;
-          this.router.navigate(['/dashboard']);
         } else {
           this.router.navigate(['/auth/login']);
         }

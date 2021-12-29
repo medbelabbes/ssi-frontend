@@ -65,6 +65,12 @@ export class AdminsListingComponent implements OnInit {
   }
 
   onSearchAdmins($event: any) {
+    this.searchQuery = $event.target.value;
+    this.adminsService.getAll(
+      this.currentAdminsPage,
+      this.adminsPerPage,
+      this.searchQuery,
+      this.role);
 
   }
 
@@ -88,6 +94,10 @@ export class AdminsListingComponent implements OnInit {
     this.isLoading = true;
     this.currentAdminsPage = pageData.pageIndex + 1;
     this.adminsPerPage = pageData.pageSize;
+
+  }
+
+  onChangeStatus(admin: User) {
 
   }
 }

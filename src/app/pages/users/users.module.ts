@@ -5,6 +5,7 @@ import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users.component';
 import { UsersListingComponent } from './users-listing/users-listing.component';
 import { UserAddEditComponent } from './user-add-edit/user-add-edit.component';
+import {AngularMaterialModule} from "../../angular-material.module";
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { UserAddEditComponent } from './user-add-edit/user-add-edit.component';
   ],
   imports: [
     CommonModule,
-    UsersRoutingModule
+    UsersRoutingModule,
+    AngularMaterialModule
   ]
 })
 export class UsersModule { }

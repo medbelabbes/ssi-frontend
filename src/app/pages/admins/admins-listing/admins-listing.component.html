@@ -62,8 +62,13 @@
             <div style="width: 20%;text-align: center;">
               {{admin.email}}
             </div>
-            <div style="width: 15%;text-align: center;">
-              {{admin.status}}
+
+            <div class="status-column" style="width: 15%;text-align: center;" (click)="onChangeStatus(admin)">
+              <span style="border: 1px solid #888888;color : #888888"
+                    *ngIf="admin.status == 'PENDING'">PENDING</span>
+              <span style="border: 1px solid  #32a400;color : #32a400"
+                    *ngIf="admin.status == 'VALIDATED'">VALIDATED</span>
+              <span style="border: 1px solid  red;color : red" *ngIf="admin.status == 'BANNED'">BANNED</span>
             </div>
             <div style="width: 20%;text-align: center;">
               <span *ngFor="let role of admin.roles;">
