@@ -1,0 +1,50 @@
+<div class="home-page-min-container" *ngIf="isLoading" style="  display: flex; flex-direction: column ;height: 100%">
+  <!-- RIBBON -->
+
+  <div class="waiting-logo">
+    <img src="../../../assets/logo/launcher_icon.png" alt="">
+    <span><span style="color: black">SSI</span><span> TEST</span>
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </span>
+  </div>
+</div>
+<div class="home-page-main-container" *ngIf="!isLoading">
+  <nav class="nav-bar">
+    <div class="logo">
+      <div class="left-content">
+        <div style="display: flex; flex-direction: column">
+          <p>SSI<span style="color: black">TEST</span></p>
+        </div>
+
+      </div>
+
+
+    </div>
+    <div class="items">
+            <span [routerLink]="['/']" class="un-active" [class.active-page]="active_page==1" (click)="active_page = 1">
+                Home
+            </span>
+      <span [routerLink]="['/services']" class="un-active" [class.active-page]="active_page==2"
+            (click)="active_page = 2">
+                Services
+            </span>
+      <span [routerLink]="['/pricing']" class="un-active" [class.active-page]="active_page==3"
+            (click)="active_page = 3">
+                Pricing
+            </span>
+      <span [routerLink]="['/contact-us']" class="un-active" [class.active-page]="active_page==4"
+            (click)="active_page = 4">
+                Contact Us
+            </span>
+      <span [routerLink]="['/about-us']" class="un-active" [class.active-page]="active_page==5"
+            (click)="active_page = 5">
+                About Us
+            </span>
+      <div class="btns">
+        <button [routerLink]="['/signin']" class="sign-in-btn nav-btn">Sign in</button>
+        <button [routerLink]="['/register']" class="register-btn nav-btn">Register</button>
+      </div>
+    </div>
+  </nav>
+  <router-outlet class="router-outlet"></router-outlet>
+</div>

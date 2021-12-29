@@ -1,0 +1,140 @@
+.home-page-main-container{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: white;
+  min-width: 100vh;
+  overflow: auto;
+}
+.nav-bar {
+  display: flex;
+  flex-direction: row;
+  height: 100px;
+  width: 100%;
+  z-index: 1;
+  background: white;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Fira Sans';
+}
+.ribbon {
+  margin: 10px;
+  margin-left: auto;
+}
+.logo {
+  /*background-image: url('../../assets/logo.png');*/
+  height: 80px;
+  width: 80px;
+  background-position: center;
+  background-size: contain;
+  margin-left: 30px;
+}
+
+.left-content, .left-content img {
+  height: 190px;
+  font-size: 60px;
+  margin: 0;
+  padding: 10px;
+  display: flex ;
+  align-items: center;
+  flex-direction: row;
+  font-family: 'Anton' ;
+  color: #EC2027;
+}
+
+.waiting-logo, .waiting-logo img {
+  height: 190px;
+  font-size: 60px;
+  margin: auto;
+  padding: 10px;
+  display: flex ;
+  align-items: center;
+  flex-direction: row;
+  font-family: 'Anton' ;
+  color: #EC2027;
+}
+
+
+.left-content p {
+  height: 20px;
+  font-size: 35px;
+  flex:1 1 auto;
+
+}
+
+
+.nav-bar .items {
+  display: flex;
+  align-items: center;
+  width: 60%;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.sign-in-btn {
+  border-width: 1.5px;
+  border-color: #EC2027;
+  background-color: transparent;
+  border-style: solid;
+  color: #EC2027;
+}
+
+.sign-in-btn:hover {
+  background-color: rgba(236,32,39,0.1);
+
+}
+.register-btn {
+  background-color: #EC2027;
+  border-width: 0px;
+  color: white;
+}
+.btns {
+  width: 240px;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 30px;
+}
+
+.items span {
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.un-active {
+  color:grey;
+}
+.items span:hover {
+  color: #EC2027;
+}
+.active-page {
+  color: black;
+  outline: none;
+}
+.nav-btn {
+  height: 40px;
+  width: 110px;
+  border-radius: 20px;
+}
+.nav-btn:focus {
+  outline-width: 0;
+  outline-style: none;
+}
+
+
+@keyframes dots {
+  50% {
+    transform: translateY(-.4rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.d {
+  animation: dots 1.5s ease-out infinite;
+}
+.d-2 {
+  animation-delay: .5s;
+}
+.d-3 {
+  animation-delay: 1s;
+}
