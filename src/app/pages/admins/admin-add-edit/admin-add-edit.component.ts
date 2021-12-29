@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AdminsService} from "../../../services/admins.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {User} from "../../../models/User.model";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {Title} from "@angular/platform-browser";
 import {Role} from "../../../models/Role.model";
@@ -43,6 +43,7 @@ export class AdminAddEditComponent implements OnInit {
   currentRolePage = 1;
   rolesPerPage = 1000;
   isRolesLoading$: Observable<boolean>;
+  isNew = true;
 
   constructor(
     private titleService: Title,
@@ -87,15 +88,41 @@ export class AdminAddEditComponent implements OnInit {
       this.mode = 'create';
       this.titleService.setTitle('Add admin');
 
-    } else {
-
+    } else if (this.href.includes('edit')) {
+      this.titleService.setTitle('Edit admin');
+      this.isNew = false;
+      this.route.paramMap.subscribe((paramMap: ParamMap) => {
+        if (paramMap.has('id')) {
+          this.mode = 'Edit';
+          this.isLoading = true;
+          this.admin.id = Number(paramMap.get('id'));
+          this.adminsService.getById(this.admin.id).subscribe(adminData => {
+            this.admin = adminData.data;
+            this.form.controls['password'].clearValidators();
+            this.form.controls['password'].updateValueAndValidity();
+            if (this.admin) {
+              this.adminFetched = true;
+              this.isLoading = false;
+              this.form.setValue({
+                  name: this.admin.name,
+                  username: this.admin.username,
+                  email: this.admin.email,
+                  password: this.admin.password,
+                  role: this.admin.roles ? this.admin.roles[0] : new Role(),
+                  status: this.admin.status,
+                }
+              );
+            }
+          });
+        }
+      })
     }
 
     this.adminSub = this.adminsService.getAdminSavedListener()
       .subscribe({
         next: (res) => {
           if (res.status) {
-           console.log("saved")
+
           }
           this.adminsService.isLoadingSubject.next(false)
           this.isLoading = false;
@@ -112,7 +139,7 @@ export class AdminAddEditComponent implements OnInit {
   }
 
   goBackToAdminsListing() {
-
+    this.router.navigate(['admins'])
   }
 
   onSave() {
@@ -131,7 +158,15 @@ export class AdminAddEditComponent implements OnInit {
       status: this.form.value.status,
       roles: [this.form.value.role]
     }
-    this.adminsService.save(user);
+    if (this.isNew) {
+      this.adminsService.save(user);
+    } else {
+      user.id = this.admin.id;
+      delete user.password;
+      console.log(user)
+      this.adminsService.edit(user);
+
+    }
   }
 
   discard() {

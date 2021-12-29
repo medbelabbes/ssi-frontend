@@ -108,4 +108,38 @@ export class AdminsService {
     return this.adminSavedListener.asObservable();
   }
 
+  getById(id: number) {
+    return this.http
+      .get<{ status: boolean, message: string, data: User }>(
+        `${API_URL}admins/get/${id}`, {});
+  }
+
+
+  edit(user: User) {
+    this.isLoadingSubject.next(true);
+
+
+    this.http.put<{ status: boolean, message: string, data: any }>(`${API_URL}admin/edit`, user, {})
+      .subscribe({
+          next: (response: { status: boolean, message: string, data: any }) => {
+            this.adminSavedListener.next({
+              status: response.status,
+              message: response.message,
+              data: response.data,
+            });
+            this.isLoadingSubject.next(false);
+
+          },
+          error: (err: any) => {
+            this.adminSavedListener.next({
+              status: false,
+              message: err.error.message,
+              data: {},
+            });
+            this.isLoadingSubject.next(false);
+
+          }
+        }
+      )
+  }
 }
