@@ -1,1 +1,48 @@
-<p>login works!</p>
+<div class="sign-in-main-container">
+  <div class="card sign-in-card" >
+    <mat-spinner  *ngIf="isLoading"></mat-spinner>
+    <form [formGroup]="form" (submit)="onSignIn()" >
+      <div class="content" *ngIf="!isLoading">
+        <h3>LOGIN</h3>
+
+
+        <mat-form-field appearance="outline">
+<!--          <mat-label>Enter your Username</mat-label>-->
+          <input matInput  type="text"
+                 formControlName="username" >
+          <button mat-icon-button matSuffix >
+            <mat-icon matSuffix>phone</mat-icon>
+          </button>
+<!--          <mat-error *ngIf="form.get('username')?.invalid">You should provide your Username</mat-error>-->
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" >
+<!--          <mat-label>Enter your password</mat-label>-->
+          <input matInput [type]="hide ? 'password' : 'text'"
+                 formControlName="password">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+<!--          <mat-error *ngIf="form.get('password')?.invalid">You should provide your password</mat-error>-->
+        </mat-form-field>
+
+
+
+        <div class="div-error" *ngIf="errorAuth">
+          <span>{{message}}</span>
+        </div>
+
+
+        <span (click)="onForgetPassword()">forget password ?</span>
+
+
+        <button class="sign-in-btn" type="submit">Login</button>
+
+      </div>
+    </form>
+
+    <div class="decoration">
+    </div>
+  </div>
+</div>
