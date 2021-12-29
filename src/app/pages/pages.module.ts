@@ -11,6 +11,7 @@ import {AngularMaterialModule} from "../angular-material.module";
 import {HeaderComponent} from './layout/header/header.component';
 import {SidebarComponent} from './layout/sidebar/sidebar.component';
 import {NgxShimmerLoadingModule} from 'ngx-shimmer-loading';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -27,7 +28,9 @@ import {NgxShimmerLoadingModule} from 'ngx-shimmer-loading';
     DashboardModule,
     AdminsModule,
     AngularMaterialModule,
-    NgxShimmerLoadingModule
+    NgxShimmerLoadingModule,
+    ReactiveFormsModule
+
   ]
 })
 export class PagesModule {

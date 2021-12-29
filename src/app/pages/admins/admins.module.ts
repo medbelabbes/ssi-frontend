@@ -6,6 +6,7 @@ import { AdminsComponent } from './admins.component';
 import { AdminAddEditComponent } from './admin-add-edit/admin-add-edit.component';
 import { AdminsListingComponent } from './admins-listing/admins-listing.component';
 import {AngularMaterialModule} from "../../angular-material.module";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -17,7 +18,9 @@ import {AngularMaterialModule} from "../../angular-material.module";
   imports: [
     CommonModule,
     AdminsRoutingModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    ReactiveFormsModule
+
   ]
 })
 export class AdminsModule { }

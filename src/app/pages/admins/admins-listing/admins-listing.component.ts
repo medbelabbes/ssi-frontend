@@ -3,6 +3,7 @@ import {User} from "../../../models/User.model";
 import {PageEvent} from "@angular/material/paginator";
 import {AdminsService} from "../../../services/admins.service";
 import {Observable, Subscription} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-admins-listing',
@@ -29,7 +30,8 @@ export class AdminsListingComponent implements OnInit {
 
 
   constructor(
-    private adminsService: AdminsService
+    private adminsService: AdminsService,
+    private router: Router
   ) {
     this.isLoading$ = this.adminsService.isLoading$;
 
@@ -75,7 +77,7 @@ export class AdminsListingComponent implements OnInit {
   }
 
   goToAddAdmin() {
-
+    this.router.navigate(['admins', 'add'])
   }
 
   onOpenAdminDetails(admin: User) {
@@ -83,7 +85,7 @@ export class AdminsListingComponent implements OnInit {
   }
 
   onEdit(admin: User) {
-
+    this.router.navigate(['admins', 'edit', admin.id])
   }
 
   onDelete(admin: User) {

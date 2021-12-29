@@ -1,1 +1,126 @@
-<p>admin-add-edit works!</p>
+<div class="category-container">
+
+  <div class="row" >
+    <div class="col col-xl-8  col-lg-12 col-md-12 col-sm-12">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title *ngIf="mode === 'create'">
+            <span class="return-btn" matTooltip="Go back to categories" (click)="goBackToAdminsListing()"><i class="fas fa-arrow-left"></i></span>
+            <span>Add New ADMIN</span>
+          </mat-card-title>
+          <mat-card-title *ngIf="adminFetched">
+            <span class="return-btn" matTooltip="Go back to categories" (click)="goBackToAdminsListing()"><i class="fas fa-arrow-left"></i></span>
+            <span>Edit ADMIN {{' ' + admin.name}}</span>
+          </mat-card-title>
+
+        </mat-card-header>
+        <mat-divider>
+        </mat-divider>
+        <mat-spinner *ngIf="isLoading" style="margin: auto"></mat-spinner>
+        <mat-card-content *ngIf="!isLoading">
+          <form [formGroup]="form" (submit)="onSave()">
+            <div class="boxcontainer" *ngIf="true">
+              <div class="boxtitle">
+                <p>Admin Detail</p>
+              </div>
+              <div class="line-container">
+                <div class="line">
+                  <mat-form-field appearance="outline" style="flex-basis: 100%;">
+                    <mat-label>
+                     Name
+                    </mat-label>
+                    <input matInput
+                           placeholder="Name"
+                           type="text"
+                           formControlName="name">
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" style="flex-basis: 100%;">
+                    <mat-label>
+                      Username
+                    </mat-label>
+                    <input matInput
+                           placeholder="Username"
+                           type="text"
+                           formControlName="username">
+                  </mat-form-field>
+
+
+                  <mat-form-field appearance="outline" style="flex-basis: 100%;">
+                    <mat-label>
+                      Email
+                    </mat-label>
+                    <input matInput
+                           placeholder="Email"
+                           type="email"
+                           formControlName="email">
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" style="flex-basis: 100%;">
+                    <mat-label>
+                      Password
+                    </mat-label>
+                    <input matInput
+                           placeholder="Password"
+                           type="password"
+                           formControlName="password">
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" style="flex-basis: 100%;">
+                    <mat-label> Gender</mat-label>
+                    <mat-select formControlName="status">
+                      <mat-option *ngFor="let s of userStatus" [value]="s">{{s}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+
+                  <mat-form-field appearance="outline" style="flex-basis: 100%;">
+                    <mat-label> Role</mat-label>
+                    <mat-select *ngIf="!(isRolesLoading$  | async)" formControlName="role">
+                      <mat-option *ngFor="let role of roles" [value]="role">{{role.name}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                  <hr>
+
+
+
+                </div>
+              </div>
+            </div>
+            <div class="btn-submit">
+              <button mat-stroked-button class="clear" type="button" (click)="discard()"> Discard</button>
+              <button mat-stroked-button class="submit" type="submit">Save</button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col col-xl-4 col-lg-12">
+      <mat-card class="statistics">
+        <mat-card-header>
+          <mat-card-title>
+            Statistics
+          </mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <mat-spinner *ngIf="false" style="margin: 0 auto;"></mat-spinner>
+          <div class="line storage" *ngIf="true">
+            <i class="fas fa-hdd" style="width: 70px"></i>
+            <div class="info">
+              <p>Admins total </p>
+              <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+              <p class="nbr-products">
+                12/50
+              </p>
+            </div>
+          </div>
+          <div class="line cash">
+
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

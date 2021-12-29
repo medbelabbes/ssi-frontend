@@ -22,7 +22,6 @@ export class AdminsService {
   public adminSavedListener = new Subject<{ status: boolean, message: string, data: any }>()
 
 
-
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -75,5 +74,38 @@ export class AdminsService {
     return this.adminsUpdatedListener.asObservable();
   }
 
+
+  save(user: User) {
+
+    this.isLoadingSubject.next(true);
+
+
+    this.http.post<{ status: boolean, message: string, data: any }>(`${API_URL}admin/save`, user, {})
+      .subscribe({
+          next: (response: { status: boolean, message: string, data: any }) => {
+            this.adminSavedListener.next({
+              status: response.status,
+              message: response.message,
+              data: response.data,
+            });
+            this.isLoadingSubject.next(false);
+
+          },
+          error: (err: any) => {
+            this.adminSavedListener.next({
+              status: false,
+              message: err.error.message,
+              data: {},
+            });
+            this.isLoadingSubject.next(false);
+
+          }
+        }
+      )
+  }
+
+  getAdminSavedListener() {
+    return this.adminSavedListener.asObservable();
+  }
 
 }
