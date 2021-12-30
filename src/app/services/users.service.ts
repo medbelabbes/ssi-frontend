@@ -115,7 +115,6 @@ export class UsersService {
   edit(user: User) {
     this.isLoadingSubject.next(true);
     const URL = `${API_URL}user/edit`
-    console.log(URL)
     this.http.patch<{ status: boolean, message: string, data: any }>(URL, user, {})
       .subscribe({
           next: (response: { status: boolean, message: string, data: any }) => {

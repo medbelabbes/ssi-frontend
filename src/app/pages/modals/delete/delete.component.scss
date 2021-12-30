@@ -1,0 +1,37 @@
+
+
+.submit {
+  outline-color: #EC2027;
+  color: white;
+  background-color: #EC2027;
+  border-color: #EC2027;
+
+}
+
+.cancel {
+  outline-color: #EC2027;
+  color: #EC2027;
+  border-color: #EC2027;
+}
+
+.btn-submit {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin: 0;
+}
+
+
+#delete-item-description span {
+  color: #EC2027;
+  font-weight: bold;
+}
+
+.response-error {
+  font-size: 18px;
+  font-weight: bold;
+  color: red;
+  margin: 10px auto 10px;
+  text-align: center;
+  width: 100%;
+}

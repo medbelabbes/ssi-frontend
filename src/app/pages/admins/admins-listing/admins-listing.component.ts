@@ -4,6 +4,9 @@ import {PageEvent} from "@angular/material/paginator";
 import {AdminsService} from "../../../services/admins.service";
 import {Observable, Subscription} from "rxjs";
 import {Router} from "@angular/router";
+import {DeleteComponent} from "../../modals/delete/delete.component";
+import {MatDialog} from "@angular/material/dialog";
+import {error} from "jquery";
 
 @Component({
   selector: 'app-admins-listing',
@@ -30,6 +33,7 @@ export class AdminsListingComponent implements OnInit {
 
 
   constructor(
+    public dialog: MatDialog,
     private adminsService: AdminsService,
     private router: Router
   ) {
@@ -89,7 +93,35 @@ export class AdminsListingComponent implements OnInit {
   }
 
   onDelete(admin: User) {
+    const dialogRef = this.dialog.open(DeleteComponent, {
+      data: {
+        title: `${admin.name}`
+      },
 
+    });
+
+    dialogRef.afterClosed()
+      .subscribe({
+        next: (res) => {
+          if(res) {
+            this.adminsService.delete(admin).subscribe({
+              next: (response) => {
+                this.adminsService.getAll(
+                  this.currentAdminsPage,
+                  this.adminsPerPage,
+                  this.searchQuery,
+                  this.role);
+              },
+              error: (error) => {
+
+              }
+            })
+          }
+        },
+        error: (err) => {
+
+        }
+      })
   }
 
   onChangePage(pageData: PageEvent) {

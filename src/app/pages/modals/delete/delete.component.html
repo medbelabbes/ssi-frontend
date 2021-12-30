@@ -1,0 +1,22 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <p >{{'Are you sure you want to delete ' + title}}</p>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <div class="row" >
+
+      <div class="col-md-12">
+        <div class="btn-submit">
+          <button mat-stroked-button class="submit" (click)="confirm()">Submit</button>
+          <button mat-stroked-button class="cancel" (click)="cancel()"> Cancel</button>
+
+        </div>
+      </div>
+    </div>
+
+
+  </mat-card-content>
+</mat-card>

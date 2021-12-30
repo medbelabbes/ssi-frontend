@@ -12,6 +12,7 @@ import {HeaderComponent} from './layout/header/header.component';
 import {SidebarComponent} from './layout/sidebar/sidebar.component';
 import {NgxShimmerLoadingModule} from 'ngx-shimmer-loading';
 import {ReactiveFormsModule} from "@angular/forms";
+import {ModalsModule} from "./modals/modals.module";
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     TasksModule,
     DashboardModule,
     AdminsModule,
+    ModalsModule,
     AngularMaterialModule,
     NgxShimmerLoadingModule,
     ReactiveFormsModule

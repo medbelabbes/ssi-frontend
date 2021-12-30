@@ -143,4 +143,11 @@ export class AdminsService {
         }
       )
   }
+
+
+  delete(user: User) {
+    this.isLoadingSubject.next(true);
+    const URL = `${API_URL}admin/delete/${user.id}`
+    return this.http.delete<{ status: boolean, message: string, data: any }>(URL);
+  }
 }
