@@ -6,6 +6,7 @@ import { UsersComponent } from './users.component';
 import { UsersListingComponent } from './users-listing/users-listing.component';
 import { UserAddEditComponent } from './user-add-edit/user-add-edit.component';
 import {AngularMaterialModule} from "../../angular-material.module";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {AngularMaterialModule} from "../../angular-material.module";
   imports: [
     CommonModule,
     UsersRoutingModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class UsersModule { }

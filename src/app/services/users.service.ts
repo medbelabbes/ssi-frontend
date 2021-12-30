@@ -73,4 +73,73 @@ export class UsersService {
     return this.usersUpdatedListener.asObservable();
   }
 
+  save(user: User) {
+
+    this.isLoadingSubject.next(true);
+
+
+    this.http.post<{ status: boolean, message: string, data: any }>(`${API_URL}user/save`, user, {})
+      .subscribe({
+          next: (response: { status: boolean, message: string, data: any }) => {
+            this.userSavedListener.next({
+              status: response.status,
+              message: response.message,
+              data: response.data,
+            });
+            this.isLoadingSubject.next(false);
+
+          },
+          error: (err: any) => {
+            this.userSavedListener.next({
+              status: false,
+              message: err.error.message,
+              data: {},
+            });
+            this.isLoadingSubject.next(false);
+
+          }
+        }
+      )
+  }
+
+  getUserSavedListener() {
+    return this.userSavedListener.asObservable();
+  }
+
+  getById(id: number) {
+    return this.http
+      .get<{ status: boolean, message: string, data: User }>(
+        `${API_URL}users/get/${id}`, {});
+  }
+
+  edit(user: User) {
+    this.isLoadingSubject.next(true);
+    const URL = `${API_URL}user/edit`
+    console.log(URL)
+    this.http.patch<{ status: boolean, message: string, data: any }>(URL, user, {})
+      .subscribe({
+          next: (response: { status: boolean, message: string, data: any }) => {
+            this.userSavedListener.next({
+              status: response.status,
+              message: response.message,
+              data: response.data,
+            });
+            this.isLoadingSubject.next(false);
+
+          },
+          error: (err: any) => {
+            console.log("error", err)
+            this.userSavedListener.next({
+              status: false,
+              message: err.error.message,
+              data: {},
+            });
+            this.isLoadingSubject.next(false);
+
+          }
+        }
+      )
+  }
+
+
 }

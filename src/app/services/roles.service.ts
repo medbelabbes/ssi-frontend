@@ -70,6 +70,46 @@ export class RolesService {
 
   }
 
+  getUserRoles(page: number, size: number) {
+    let currentPage = page - 1;
+    this.isLoadingSubject.next(true);
+    this.http
+      .get<{ status: boolean, message: string, data: Role[], count: number }>(`${API_URL}roles/user-roles?page=${currentPage}&size=${size}`, {})
+      .pipe(
+        map(roleData => {
+          return {
+            status: roleData.status,
+            message: roleData.message,
+            roles: roleData.data,
+            count: roleData.count,
+          };
+        }),
+      )
+      .subscribe({
+        next: (transformedRoles) => {
+          this.roles = transformedRoles.roles;
+          this.totalRoles = transformedRoles.count;
+          this.rolesUpdatedListener.next({
+            status: transformedRoles.status,
+            message: transformedRoles.message,
+            roles: [...this.roles],
+            count: transformedRoles.count,
+          });
+          this.isLoadingSubject.next(false);
+        },
+        error: (err) => {
+          this.rolesUpdatedListener.next({
+            status: false,
+            message: err.error.message,
+            roles: [],
+            count: 0,
+          });
+          this.isLoadingSubject.next(false);
+        }
+      })
+
+  }
+
   getRolesUpdatedListener() {
     return this.rolesUpdatedListener.asObservable();
   }

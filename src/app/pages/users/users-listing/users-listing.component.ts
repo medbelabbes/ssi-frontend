@@ -3,6 +3,7 @@ import {Observable, Subscription} from "rxjs";
 import {User} from "../../../models/User.model";
 import {UsersService} from "../../../services/users.service";
 import {PageEvent} from "@angular/material/paginator";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-users-listing',
@@ -29,7 +30,8 @@ export class UsersListingComponent implements OnInit {
 
 
   constructor(
-    private usersService: UsersService
+    private usersService: UsersService,
+    private router: Router
   ) {
     this.isLoading$ = this.usersService.isLoading$;
 
@@ -73,7 +75,7 @@ export class UsersListingComponent implements OnInit {
   }
 
   goToAddUser() {
-
+    this.router.navigate(['users', 'add'])
   }
 
   onOpenUserDetails(user: User) {
@@ -81,7 +83,7 @@ export class UsersListingComponent implements OnInit {
   }
 
   onEdit(user: User) {
-
+    this.router.navigate(['users', 'edit', user.id])
   }
 
   onDelete(user: User) {

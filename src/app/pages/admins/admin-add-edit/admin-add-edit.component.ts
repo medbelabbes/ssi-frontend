@@ -156,14 +156,14 @@ export class AdminAddEditComponent implements OnInit {
       email: this.form.value.email,
       password: this.form.value.password,
       status: this.form.value.status,
-      roles: [this.form.value.role]
+      roles: [this.form.value.role],
+      tasks: []
     }
     if (this.isNew) {
       this.adminsService.save(user);
     } else {
       user.id = this.admin.id;
       delete user.password;
-      console.log(user)
       this.adminsService.edit(user);
 
     }

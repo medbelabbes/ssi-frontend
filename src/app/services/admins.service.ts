@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
@@ -117,9 +117,9 @@ export class AdminsService {
 
   edit(user: User) {
     this.isLoadingSubject.next(true);
-
-
-    this.http.put<{ status: boolean, message: string, data: any }>(`${API_URL}admin/edit`, user, {})
+    const URL = `${API_URL}admin/edit`
+    console.log(URL)
+    this.http.patch<{ status: boolean, message: string, data: any }>(URL, user, {})
       .subscribe({
           next: (response: { status: boolean, message: string, data: any }) => {
             this.adminSavedListener.next({
@@ -131,6 +131,7 @@ export class AdminsService {
 
           },
           error: (err: any) => {
+            console.log("error", err)
             this.adminSavedListener.next({
               status: false,
               message: err.error.message,
